@@ -86,6 +86,10 @@ php_errors.log
 #-------------------------
 vendor/
 
+# Archivos públicos de almacenamiento y subidas
+/public/writable/
+/writable/
+
 #-------------------------
 # IDE / Development Files
 #-------------------------
