@@ -6,7 +6,6 @@
 
 <h1>Crear película</h1>
 
-
     <form action="create" method="post">
 <label for="title">Título</label>
 <input type="text" name="titulo" value="<?= old('titulo') ?>" />
