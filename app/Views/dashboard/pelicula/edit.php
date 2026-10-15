@@ -1,8 +1,9 @@
 <?= $this->extend('layouts/dashboard') ?>
 
 <?= $this->section('contenido') ?>
+<?= view('partials/_form-error'); ?>
 
-    <h1>Crear película</h1>
+    <h1>Actualizar película</h1>
 
     <form action="/dashboard/pelicula/update/<?= $pelicula['id'] ?>" method="post">
 

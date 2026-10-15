@@ -50,7 +50,7 @@ class Categoria extends BaseController
 
 
 // ========== Crear una nueva categoría (No requiere una vista) ==============
-    public function create()
+ /*   public function create()
     {
 
         $categoriaModel = new CategoriaModel();
@@ -61,7 +61,25 @@ class Categoria extends BaseController
 
        // Redirigimos a la página:
    return redirect()->to('/dashboard/categoria/new')->with('mensaje', 'Registro insertado con éxito');
-    }
+    }*/
+
+    public function create() {
+$categoriaModel = new CategoriaModel();
+
+if($this->validate('categorias')) { //validación
+$categoriaModel->insert([
+    'titulo'=>$this->request->getPost('titulo')
+   
+]);
+} else {
+  session()->setFlashdata('errors', $this->validator->getErrors()); 
+
+    return redirect()->back()->withInput();
+}
+  
+   // Redirigimos a la página:
+   return redirect()->to('/dashboard/categoria/new')->with('mensaje', 'Registro insertado con éxito');
+}
 // ==========================================================================
 
 
@@ -83,17 +101,25 @@ class Categoria extends BaseController
 
 
 // ========== Actualizar una categoría (No necesita vista) =============
-    public function update($id)
-    {
+public function update($id) {
 
-        $categoriaModel = new CategoriaModel();
+$categoriaModel = new CategoriaModel();
 
-        $categoriaModel->update($id, [
-            'titulo' => $this->request->getPost('titulo')
-        ]);
+if($this->validate('categorias')) { //validación
 
-        echo 'update';
-    }
+$categoriaModel->update($id, [
+    'titulo'=>$this->request->getPost('titulo')
+    ]);
+} else {
+  session()->setFlashdata('errors', $this->validator->getErrors()); 
+
+    return redirect()->back()->withInput();
+}
+  
+   // Redirigimos a la página:
+   return redirect()->back()->with('mensaje', 'Registro actualizado con éxito');
+   
+ }
 
 // ====================================================================
 
