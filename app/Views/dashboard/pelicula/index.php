@@ -2,7 +2,7 @@
 
 <?= $this->section('contenido') ?>
 
-<a href="/dashboard/pelicula/new">Crear</a>
+<a href="/dashboard/pelicula/new">Crear película</a>
 <br />
 <table border="1">
         <tr>
