@@ -89,19 +89,30 @@ $peliculaModel = new PeliculaModel();
 
 
 
-// =========== Método para actualizar una película específica =============== 
-
+// ============= Actualizar película ========================================
 public function update($id) {
 $peliculaModel = new PeliculaModel();
-$peliculaModel->update($id, [
-    'titulo'=>$this->request->getPost('titulo'),
-    'descripcion'=>$this->request->getPost('descripcion')
-]);
 
-return redirect()->back()->with('mensaje', 'Registro modificado con éxito');
-  
+if($this->validate('peliculas')) { //validación
+
+$peliculaModel->update($id, [
+    'titulo'=>$this->request->getPost('titulo'), 
+    'descripcion'=>$this->request->getPost('descripcion') 
+    ]);
+} else {
+  session()->setFlashdata('errors', $this->validator->getErrors()); 
+
+    return redirect()->back()->withInput();
 }
+  
+   // Redirigimos a la página:
+   return redirect()->back()->with('mensaje', 'Registro actualizado con éxito');
+   
+ }
+
 // =========================================================================
+
+
 
 
 // =========== Eliminar una película =======================================
