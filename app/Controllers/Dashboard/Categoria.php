@@ -48,21 +48,6 @@ class Categoria extends BaseController
 // ==========================================================================
 
 
-
-// ========== Crear una nueva categoría (No requiere una vista) ==============
- /*   public function create()
-    {
-
-        $categoriaModel = new CategoriaModel();
-
-        $categoriaModel->insert([
-            'titulo' => $this->request->getPost('titulo')
-        ]);
-
-       // Redirigimos a la página:
-   return redirect()->to('/dashboard/categoria/new')->with('mensaje', 'Registro insertado con éxito');
-    }*/
-
     public function create() {
 $categoriaModel = new CategoriaModel();
 
