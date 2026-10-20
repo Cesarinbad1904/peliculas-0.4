@@ -11,13 +11,13 @@ public function index() {
 
 $peliculaModel = new PeliculaModel();
 
-$todasLasPeliculas = $peliculaModel->find();
+$todasLasPeliculas = new PeliculaModel();
 
 //var_dump($todasLasPeliculas); // Usar solo en modo de desarrollo
 //dd($todasLasPeliculas); // Usar solo en modo de desarrollo
 
 $data = [
-    'peliculas' => $todasLasPeliculas,
+    'peliculas' => $todasLasPeliculas->asObject()->find(),
 ]; 
 
 return view ('dashboard/pelicula/index', $data);
@@ -30,7 +30,7 @@ return view ('dashboard/pelicula/index', $data);
 public function show($id) {
     $peliculaModel = new PeliculaModel();
     $data = [
-        'pelicula' => $peliculaModel->find($id)
+        'pelicula' => $peliculaModel->asObject()->find($id),
     ];
 
     return view('dashboard/pelicula/show', $data);
@@ -79,7 +79,7 @@ public function edit($id) {
 $peliculaModel = new PeliculaModel();
 
  $data = [
-        'pelicula' => $peliculaModel->find($id)
+        'pelicula' => $peliculaModel->asObject()->find($id),
     ];
 
    return view('/dashboard/pelicula/edit', $data);

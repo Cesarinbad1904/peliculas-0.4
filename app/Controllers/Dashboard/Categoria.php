@@ -12,9 +12,11 @@ class Categoria extends BaseController
 
         $categoriaModel = new CategoriaModel();
 
-        return view('dashboard/categoria/index', [
-            'categorias' => $categoriaModel->findAll(),
-        ]);
+        $data = [
+            'categorias' => $categoriaModel->asObject()->find(),
+        ];
+
+        return view('dashboard/categoria/index', $data);
     }
 // =====================================================================
 
@@ -25,10 +27,10 @@ class Categoria extends BaseController
     {
         $categoriaModel = new CategoriaModel();
         $data = [
-        'categoria' => $categoriaModel->find($id),
+        'categoria' => $categoriaModel->asObject()->find($id),
         ];
 
-        echo view('dashboard/categoria/show', $data);
+        return view('dashboard/categoria/show', $data);
     }
 // ========================================================================
 
@@ -40,7 +42,7 @@ class Categoria extends BaseController
     {
 
     $data = [
-        'categoria'=> ['titulo'=>''],
+        'categoria'=> new CategoriaModel(),
         ];
     
         return view('dashboard/categoria/new', $data);
@@ -75,7 +77,7 @@ $categoriaModel->insert([
     {
         $categoriaModel = new CategoriaModel();
     $data = [
-        'categoria'=> $categoriaModel->find($id),
+        'categoria'=> $categoriaModel->asObject()->find($id),
         ];    
 
         return view('dashboard/categoria/edit', $data);
